@@ -37,5 +37,14 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0.
 
 Edited by Mirrox#2506
 
+Re-Edited by Nathan#8860
+
+- Updated belt indicator
+- Added harness back
+- Harness shows as seatbelt "on" in the hud
+
+Planned additions
+- Adding Bleeding status to the HUD
+
 ## Screenshot
 ![alt text](https://i.imgur.com/9C2hWgl.png)
