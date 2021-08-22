@@ -1,0 +1,228 @@
+body {
+  width: 100%;
+  overflow: hidden;
+  font-family: "Exo 2", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.IconContainer {
+  position: absolute;
+  bottom: 0vh;
+  left: 0.1vh;
+}
+
+.BaseCircle {
+  position: relative;
+  width: 4vh !important;
+  height: 4vh !important;
+  float: left;
+  margin: 0.3vh;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.fa-heartbeat{
+  color: rgb(0, 182, 91);
+  position: absolute;
+  font-size: 1.8vh;
+  left: 1.15vh;
+  bottom: 1.05vh;
+}
+.fa-shield-alt{
+  color: rgb(201, 36, 36);
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.2vh;
+  bottom: 1.2vh;
+}
+.fa-utensils{
+  color: rgb(255, 164, 59);
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.3vh;
+  bottom: 1.15vh;
+}
+.fa-skull {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.2vh;
+  bottom: 1.2vh;
+}
+
+.fa-brain {
+  color: rgb(255, 74, 104);
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.1vh;
+  bottom: 1.2vh;
+}
+
+.fa-headset  {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.1vh;
+  bottom: 1.2vh;
+}
+
+.fa-lungs {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.1vh;
+  bottom: 1.3vh;
+}
+
+.fa-tint {
+  color: rgb(0, 140, 255);
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.45vh;
+  bottom: 1.2vh;
+}
+
+.fa-microphone {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.45vh;
+  bottom: 1.2vh;
+}
+
+.fa-eye-dropper {
+  color: white;
+  position: absolute;
+  font-size: 1.3vh;
+  left: 0.8vh;
+  bottom: 0.85vh;
+}
+
+.fa-tachometer-alt{
+  color: white;
+  position: absolute;
+  font-size: 1.3vh;
+  left: 0.8vh;
+  bottom: 0.85vh;
+}
+
+#SpeedCircle {
+  width: 5vh !important;
+  height: 5vh !important;
+  position: absolute;
+  font-size: 5vh;
+  left: 22.8vh;
+  bottom: 5.6vh;
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(-180deg);
+}
+
+#SpeedIndicator {
+  color: white;
+  position: inherit;
+  z-index: 1000;
+  left: 1vh;
+  top: 0.1vh;
+  width: 3vh;
+  font-size: 2vh;
+  text-align: center;
+  text-shadow: 0.2vh 0.2vh 0vh rgb(22, 22, 22);
+  transform: rotate(-180deg);
+}
+#FuelCircle {
+  width: 3vh !important;
+  height: 3vh !important;
+  position: absolute;
+  left: 20.4vh;
+  bottom: 4.2vh;
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(-180deg);
+}
+#NitrousCircle {
+  width: 3vh !important;
+  height: 3vh !important;
+  position: absolute;
+  left: 27.2vh;
+  bottom: 4.2vh;
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(-180deg);
+}
+
+#BeltCircle {
+  width: 3vh !important;
+  height: 3vh !important;
+  position: absolute;
+  left: 24.2vh;
+  bottom: 11vh;
+  background: rgba(0, 0, 0, 0.0);
+  transform: rotate(-180deg);
+}
+
+#CruiseCircle {
+  width: 3vh !important;
+  height: 3vh !important;
+  position: absolute;
+  left: 26.2vh;
+  bottom: 11vh;
+  background: rgba(0, 0, 0, 0.0);
+  transform: rotate(-180deg);
+}
+
+.nitrous {
+  color: white;
+  left: 0.6vh;
+  bottom: 0.7vh;
+  height: 18px;
+  width: 18px;
+  position: inherit;
+  transform: rotate(-180deg);
+}
+
+.fa-eye-dropper {
+  color: white;
+  left: 0.6vh;
+  bottom: 0.85vh;
+  height: 22px;
+  width: 22px;
+  position: inherit;
+  transform: rotate(-180deg);
+}
+
+.fa-tachometer-alt {
+  color: white;
+  left: 0.95vh;
+  bottom: 0.85vh;
+  height: 18px;
+  width: 18px;
+  position: inherit;
+  transform: rotate(-180deg);
+}
+
+.fa-gas-pump {
+  color: white;
+  font-size: 1vh;
+  position: inherit;
+  left: 0.9vh;
+  bottom: 1.1vh;
+  transform: rotate(-180deg);
+}
+
+.flash {
+  -webkit-animation: flash 1s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
