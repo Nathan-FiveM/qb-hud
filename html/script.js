@@ -35,6 +35,15 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
+  BloodIndicator = new ProgressBar.Circle("#BloodIndicator", {
+    color: "rgb(255, 0, 0)",
+    trailColor: "rgb(120, 0, 0)",
+    strokeWidth: 10,
+    trailWidth: 10,
+    duration: 250,
+    easing: "easeInOut",
+  });
+
   StressIndicator = new ProgressBar.Circle("#StressIndicator", {
     color: "rgb(255, 74, 104)",
     trailColor: "rgb(102, 27, 40)",
@@ -117,6 +126,7 @@ window.addEventListener("message", function (event) {
     ArmorIndicator.animate(data.armor / 100);
     HungerIndicator.animate(data.hunger / 100);
     ThirstIndicator.animate(data.thirst / 100);
+    BloodIndicator.animate(data.bleedingPercentage / 100);
     StressIndicator.animate(data.stress / 100);
     OxygenIndicator.animate(data.oxygen / 100);
   }
@@ -186,6 +196,12 @@ window.addEventListener("message", function (event) {
     $("#StressIndicator").fadeIn();
   }
 
+  if (data.bleedingPercentage == 0) {
+    $("#BloodIndicator").fadeOut();
+  } else if (data.bleedingPercentage > 0) {
+    $("#BloodIndicator").fadeIn();
+  }
+
   // Change color and icon if HP is 0 (dead)
   if (data.hp < 0) {
     HealthIndicator.animate(0);
@@ -205,6 +221,10 @@ window.addEventListener("message", function (event) {
   // Flash if hunger is low
   if (data.hunger < 25) {
     $("#HungerIndicator").toggleClass("flash");
+  }
+  // Flash if blood is high
+  if (data.bleedingPercentage > 75) {
+    $("#BloodIcon").toggleClass("flash");
   }
   // Flash if Oxygen is low
   if (data.oxygen < 25) {

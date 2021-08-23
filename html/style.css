@@ -39,11 +39,11 @@ body {
   left: 1.2vh;
   bottom: 1.2vh;
 }
-.fa-utensils{
+.fa-hamburger{
   color: rgb(255, 164, 59);
   position: absolute;
   font-size: 1.6vh;
-  left: 1.3vh;
+  left: 1.21vh;
   bottom: 1.15vh;
 }
 .fa-skull {
@@ -80,6 +80,14 @@ body {
 
 .fa-tint {
   color: rgb(0, 140, 255);
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.45vh;
+  bottom: 1.2vh;
+}
+
+.fa-bloodtint {
+  color: rgb(255, 0, 0);
   position: absolute;
   font-size: 1.6vh;
   left: 1.45vh;

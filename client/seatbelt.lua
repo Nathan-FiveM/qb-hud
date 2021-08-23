@@ -92,7 +92,7 @@ function toggleSeatbelt(makeSound, toggle)
     end
 end
 
-RegisterCommand('toggleseatbelt', function(source, args, rawCommand)
+RegisterCommand('+seatbelt', function(source, args, rawCommand)
     if IsPedInAnyVehicle(PlayerPedId(), false) then
         local class = GetVehicleClass(GetVehiclePedIsIn(PlayerPedId()))
         if class ~= 8 and class ~= 13 and class ~= 14 then

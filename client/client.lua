@@ -7,6 +7,84 @@ local hunger = nil
 local thirst = nil
 local oxygen = 0
 local seatbeltOn = false
+local bleedingPercentage = 0
+
+RegisterCommand('+onengine', function()
+    local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
+    if vehicle ~= nil and vehicle ~= 0 and GetPedInVehicleSeat(vehicle, 0) then
+        if not IsPauseMenuActive() then
+            QBCore.Functions.Notify('You\'ve turned on the engine!')
+            SetVehicleEngineOn(vehicle, true, false, true)
+        end
+    end
+end)
+
+RegisterCommand('+offengine', function()
+    local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
+    if vehicle ~= nil and vehicle ~= 0 and GetPedInVehicleSeat(vehicle, 0) then
+        if not IsPauseMenuActive() then
+            QBCore.Functions.Notify('You\'ve turned off the engine!')
+            SetVehicleEngineOn(vehicle, false, false, true)
+        end
+    end
+end)
+
+RegisterKeyMapping('+onengine', '[CAR] Toggle Engine On', 'keyboard', 'MOUSE_WHEEL_UP')
+RegisterKeyMapping('+offengine', '[CAR] Toggle Engine Off', 'keyboard', 'MOUSE_WHEEL_DOWN')
+
+RegisterNetEvent("EngineAlarm")
+AddEventHandler("EngineAlarm",function()
+    if not alarm then
+        alarm = true
+        local i = 5
+		QBCore.Functions.Notify("Vehicle Reaching Critical Damage.", "error")
+        while i > 0 do
+            PlaySound(-1, "5_SEC_WARNING", "HUD_MINI_GAME_SOUNDSET", 0, 0, 1)
+            i = i - 1
+            Citizen.Wait(500)
+        end
+        Citizen.Wait(60000)
+        alarm = false
+    end
+end)
+
+alarmset = false
+RegisterNetEvent("CarFuelAlarm")
+AddEventHandler("CarFuelAlarm",function()
+    if not alarmset then
+        alarmset = true
+        local i = 5
+		QBCore.Functions.Notify("Low fuel.", "error")
+        while i > 0 do
+            PlaySound(-1, "5_SEC_WARNING", "HUD_MINI_GAME_SOUNDSET", 0, 0, 1)
+            i = i - 1
+            Citizen.Wait(300)
+        end
+        Citizen.Wait(60000)
+        alarmset = false
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        if QBCore ~= nil then
+            QBCore.Functions.TriggerCallback('hospital:GetPlayerBleeding', function(playerBleeding)
+                if playerBleeding == 0 then
+                    bleedingPercentage = 0
+                elseif playerBleeding == 1 then
+                    bleedingPercentage = 25
+                elseif playerBleeding == 2 then
+                    bleedingPercentage = 50
+                elseif playerBleeding == 3 then
+                    bleedingPercentage = 75
+                elseif playerBleeding == 4 then
+                    bleedingPercentage = 100
+                end
+            end)
+        end
+        Citizen.Wait(2500)
+    end
+end)
 
 RegisterNetEvent("QBCore:Client:OnPlayerLoaded")
 AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
@@ -104,15 +182,12 @@ Citizen.CreateThread(function()
                 if Config.UseRadio then
                 --[[local radioStatus = exports["qb-radio"]:IsRadioOn()
                     SendNUIMessage({radio = radioStatus}) ]]
---[[ 					 while true do
-						local radioStatus = LocalPlayer.state['radioChannel']
-						if radioStatus ~= 0 then
-							SendNUIMessage({radio = true})
-						elseif radioStatus <= 0 then
-							SendNUIMessage({radio = false})
-						end
-						Citizen.Wait(30000)
-					 end ]]
+                    local radioStatus = LocalPlayer.state['radioChannel']
+                    if radioStatus ~= 0 then
+                        SendNUIMessage({radio = false})
+                    elseif radioStatus == 0 then
+                        SendNUIMessage({radio = true})
+                    end
                 end
 
                 -- Voice
@@ -127,7 +202,8 @@ Citizen.CreateThread(function()
                     thirst = thirst,
                     stress = stress,
                     oxygen = oxygen,
-                    talking = isTalking
+                    talking = isTalking,
+                    bleedingPercentage = bleedingPercentage,
                 })
                 if IsPauseMenuActive() then
                     SendNUIMessage({showUi = false})
